@@ -27,7 +27,7 @@ X_train.txt
 y_test.txt  
 y_train.txt   
 
-The input files must be located in the working directory. The script creates as output a file titled "tidy_data_set.txt" containing the tidy data. This file is in comma separated variable (csv) format and is created in the working directory.
+The input files must be located in the current working directory. The script creates as output a file titled "tidy_data_set.txt" containing the tidy data. This file is in comma separated variable (csv) format and is created in the working directory.
 
 The first block of code loads required packages and gets the working directory for use in later function calls to read the data files.
 
@@ -58,7 +58,7 @@ work_dir <- getwd()
 
 The next three blocks of code performs task 1.  Two data frames are formed, one of test data and one of train data.  Then the test and the train data frames are combined to form the one data set.
 
-In the following code block a test data frame is formed by first reading the subject, activity and features data files each into a separate data frame.  Since these data are aligned by column, the three data frames are then combined using the cbind() function.
+In the following code block a test data frame is formed by first reading the subject, activity and features data files each into a separate data frame.  Since these data are aligned by row, the three data frames are then combined using the cbind() function.
 
 
 ```r
