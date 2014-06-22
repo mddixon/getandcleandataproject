@@ -95,14 +95,11 @@ names(data_set) <- c("subject", "activity", variable_names)
 ## Create a second, independent tidy data set with the average of 
 ##   each variable for each activity and each subject.
 
-data_set_of_means <- summaryBy( .~subject+activity, data=data_set, 
+data_set_of_means <- summaryBy( . ~ subject + activity, data=data_set, 
                                FUN=mean)
   # Tidy up the resulting variable names by replacing periods
 names(data_set_of_means) <- gsub("\\.", "_", names(data_set_of_means))
 
-  # Write the tidy data set as a text file (csv format) to the 
-  # working directory
-write.table(data_set_of_means, file="tidy_data_set.txt", sep=",", 
-            row.names=FALSE)
-write.table(data_set_of_means, file="tidy_data_set.csv", sep=",", 
+  # Write the data set as a text file (csv format) to the working directory 
+write.table(data_set_of_means, file="tidy_data_set.txt", sep=",",
             row.names=FALSE)
