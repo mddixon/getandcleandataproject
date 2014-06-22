@@ -8,7 +8,7 @@ The file "run_analysis.R" contains an R script to process data collected from th
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
 
-The script creates a tidy data set with the average of each variable for each activity and each subject. Tasks to create the tidy data set are:
+The script creates a tidy data set with the average of each variable for each activity and each subject. Steps to create the tidy data set are:
 
 1. Merge the training and the test sets to create one data set.
 2. Extract only the measurements on the mean and standard deviation for each measurement.
@@ -40,7 +40,7 @@ library(doBy)
 work_dir <- getwd()
 ```
 
-The next three blocks of code performs task 1.  Two data frames are formed, one of test data and one of train data.  Then the test and the train data frames are combined to form the one data set.
+The next three blocks of code performs step 1.  Two data frames are formed, one of test data and one of train data.  Then the test and the train data frames are combined to form the one data set.
 
 In the following code block a test data frame is formed by first reading the subject, activity and features data files each into a separate data frame.  Since these data are aligned by row, the three data frames are then combined using the cbind() function.
 
@@ -80,7 +80,7 @@ data_set_train <- cbind(subject_train, activity_number_train,
                         feature_values_train)
 ```
 
-The following code block completes task 1 by combining the test and the train data frames into one data frame.  Since these data are aligned by column, the two are combined into a new data frame using the rbind() function.
+The following code block completes step 1 by combining the test and the train data frames into one data frame.  Since these data are aligned by column, the two are combined into a new data frame using the rbind() function.
 
 
 ```r
@@ -88,7 +88,7 @@ The following code block completes task 1 by combining the test and the train da
 one_data_set <- rbind(data_set_test, data_set_train)
 ```
 
-The following block of code performs task 2.  The measurements on the mean and stardard deviation for each measurement are extracted by using the grep() function.  The substrings "mean" or "std" are searched for over the feature names vector.  Column numbers for feature names that match are returned and used to subset the desired columns into a new data frame, data_set.
+The following block of code performs step 2.  The measurements on the mean and stardard deviation for each measurement are extracted by using the grep() function.  The substrings "mean" or "std" are searched for over the feature names vector.  Column numbers for feature names that match are returned and used to subset the desired columns into a new data frame, data_set.
 
 
 ```r
@@ -105,7 +105,7 @@ cols_to_extract <- grep("mean|std", feature_names, ignore.case=FALSE,
 data_set <- one_data_set[, c(1, 2, (cols_to_extract + 2))]
 ```
 
-The following block of code performs task 3.  The activity labels are read in from the activity_labels.text file to a vector.  The vector is used as the "labels=" argument in a factor() function call on the data set activity column.  This replaces numerical values with corresponding character labels. 
+The following block of code performs step 3.  The activity labels are read in from the activity_labels.text file to a vector.  The vector is used as the "labels=" argument in a factor() function call on the data set activity column.  This replaces numerical values with corresponding character labels. 
 
 
 ```r
@@ -117,7 +117,7 @@ activity_names <- as.vector(tolower(activity_names[,2]))
 data_set$activity <- factor(data_set$activity, labels=activity_names)
 ```
 
-The following block of code performs task 4. Variable labels are extracted from the feature_names vector by subsetting the vector with the cols_to_extract vector determined above.  Problematic characters in the variable names are removed or replaced and the variable names are combined with "subject" and "activity" labels to be assigned by names() function to the data set.
+The following block of code performs step 4. Variable labels are extracted from the feature_names vector by subsetting the vector with the cols_to_extract vector determined above.  Problematic characters in the variable names are removed or replaced and the variable names are combined with "subject" and "activity" labels to be assigned by names() function to the data set.
 
 
 ```r
