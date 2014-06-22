@@ -79,14 +79,14 @@ data_set$activity <- factor(data_set$activity, labels=activity_names)
 
   # Extract the subset of variable names from feature names
 variable_names <- feature_names[cols_to_extract]
-  # Remove/replace special characters from variable names
+  # Remove/replace special characters and typos from variable names
   # Define a function to find and replace substrings 
 replace <- function(pattern, replacement, x, ...) {
     for(i in 1:length(pattern)) x <- gsub(pattern[i], replacement[i], x, ...)
     return(x)}
   # Define replacement substrings
-from <- c("-", "\\(", "\\)")
-to <- c("_", "", "")
+from <- c("-", "\\(", "\\)", "BodyBody")
+to <- c("_", "", "", "Body")
   # Call replace() to clean up variable names
 variable_names <- replace(from, to, variable_names)
   # Assign the descriptive variable names to the data set
