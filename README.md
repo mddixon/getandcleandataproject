@@ -36,9 +36,6 @@ The first block of code loads required packages and gets the working directory f
   # Load required packages
 library(data.table)
 library(doBy)
-## Loading required package: survival
-## Loading required package: splines
-## Loading required package: MASS
   # Get the working directory containing the input files
 work_dir <- getwd()
 ```
