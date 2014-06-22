@@ -35,23 +35,10 @@ The first block of code loads required packages and gets the working directory f
 ```r
   # Load required packages
 library(data.table)
-```
-
-```
-## data.table 1.9.2  For help type: help("data.table")
-```
-
-```r
 library(doBy)
-```
-
-```
 ## Loading required package: survival
 ## Loading required package: splines
 ## Loading required package: MASS
-```
-
-```r
   # Get the working directory containing the input files
 work_dir <- getwd()
 ```
